@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<time.h>
+
+void linear(int search,int arr[],int size){
+    for(int i=0;i<size;i++){
+        if(arr[i]==search){
+            printf("Element found in position %d\n",i);
+            return;
+        }
+    }
+    printf("Element not found\n");
+}
+
+
+int main()
+{
+    clock_t start,end;
+    int n;
+    int s;
+    printf("Enter array size\n");
+    scanf("%d",&n);
+    int arr[n];
+    printf("Enter array elements\n");
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    printf("Enter element to be searched\n");
+    scanf("%d",&s);
+    start=clock();
+    linear(s,arr,n);
+    for(int i=0;i<1000;i++){
+        for(int j=0;j<1000000;j++){
+            
+        }
+    }
+    end=clock();
+    printf("\ntime taken %f ", difftime(end,start)/CLOCKS_PER_SEC);
+}
