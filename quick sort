@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int quick(int arr[],int low,int high)
+{
+int pivot=arr[low];
+int i=low;
+int j=high;
+while(i<j)
+{
+while(arr[i]<=pivot)
+{
+i++;
+}
+while(arr[j]>pivot)
+{
+j--;
+}
+
+if(i<j)
+{
+int temp;
+temp=arr[i];
+arr[i]=arr[j];
+arr[j]=temp;
+}
+}
+arr[low]=arr[j];
+arr[j]=pivot;
+return j;
+}
+
+void sort(int arr,int low,int high)
+{
+    if(low<high)
+    {
+int pivot=quick(arr,low,high);
+sort(arr,low,pivot-1);
+sort(arr,pivot+1,high);
+    }
+}
+
+int main()
+{
+int n,i;
+clock_t start,end;
+printf("enter the number of elements in the array:");
+scanf("%d",&n);
+int arr[n];
+//printf("enter the elements:");
+//for(i=0;i<n;i++)
+//{
+//scanf("%d",&arr[i]);
+//}
+for(i=0;i<n;i++){
+arr[i]=rand();
+}
+start=clock();
+sort(arr,0,n-1);
+end=clock();
+for(i=0;i<n;i++)
+{
+printf("%d ",arr[i]);
+}
+printf("timetaken: %f\n ", difftime(end,start)/CLOCKS_PER_SEC);
+}
